@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sourav Pandey — Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B0F1A;
+    --bg-panel: #121826;
+    --bg-panel-2: #161d2e;
+    --line: #232b3d;
+    --text: #F2F0EA;
+    --text-muted: #8A93A6;
+    --gold: #F2B95C;
+    --gold-soft: #f7d493;
+    --cyan: #5FD0E0;
+    --radius: 14px;
+    --maxw: 1120px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{ font-family:'Space Grotesk', sans-serif; letter-spacing:-0.01em; }
+  a{ color:inherit; text-decoration:none; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+  ::selection{ background: var(--gold); color:#12100a; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(11,15,26,0.75);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .logo{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:0.02em; }
+  .logo span{ color:var(--gold); }
+  .nav-links{ display:flex; gap:32px; }
+  .nav-links a{
+    font-size:0.88rem; color:var(--text-muted); font-weight:500;
+    position:relative; padding:4px 0; transition:color .25s ease;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px;
+    background:var(--gold); transition:width .25s ease;
+  }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    border:1px solid var(--gold); color:var(--gold) !important; padding:8px 18px;
+    border-radius:100px; font-size:0.82rem !important; font-weight:600 !important;
+    transition:all .25s ease;
+  }
+  .nav-cta:hover{ background:var(--gold); color:#12100a !important; }
+  .nav-cta::after{ display:none; }
+  .burger{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:center;
+    padding-top:68px; overflow:hidden;
+  }
+  #stars{ position:absolute; inset:0; z-index:0; }
+  .hero-glow{
+    position:absolute; width:600px; height:600px; border-radius:50%;
+    background:radial-gradient(circle, rgba(242,185,92,0.14) 0%, rgba(242,185,92,0) 70%);
+    top:-150px; right:-150px; z-index:0; pointer-events:none;
+  }
+  .hero .wrap{ position:relative; z-index:2; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--gold-soft);
+    border:1px solid rgba(242,185,92,0.3); background:rgba(242,185,92,0.06);
+    padding:6px 14px; border-radius:100px; margin-bottom:28px;
+    opacity:0; animation: fadeUp .8s ease forwards; animation-delay:.1s;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--gold); box-shadow:0 0 8px var(--gold); animation:pulse 2s infinite; }
+
+  .tagline{
+    font-size:clamp(2rem, 6vw, 4.4rem); font-weight:700; line-height:1.08;
+    max-width:940px; margin-bottom:26px;
+    opacity:0; animation: fadeUp .9s ease forwards; animation-delay:.25s;
+  }
+  .tagline .dream{
+    background: linear-gradient(100deg, var(--gold-soft), var(--gold) 35%, var(--cyan) 70%, var(--gold-soft));
+    background-size:300% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation: shimmer 6s linear infinite;
+  }
+  .hero-sub{
+    max-width:600px; color:var(--text-muted); font-size:1.05rem; margin-bottom:38px;
+    opacity:0; animation: fadeUp .9s ease forwards; animation-delay:.4s;
+  }
+  .hero-cta{ display:flex; gap:16px; flex-wrap:wrap; opacity:0; animation: fadeUp .9s ease forwards; animation-delay:.55s; }
+  .btn-primary, .btn-secondary{
+    padding:14px 28px; border-radius:100px; font-weight:600; font-size:0.92rem;
+    display:inline-flex; align-items:center; gap:8px; transition:all .25s ease;
+  }
+  .btn-primary{ background:var(--gold); color:#14110a; }
+  .btn-primary:hover{ background:var(--gold-soft); transform:translateY(-2px); box-shadow:0 8px 24px rgba(242,185,92,0.25); }
+  .btn-secondary{ border:1px solid var(--line); color:var(--text); }
+  .btn-secondary:hover{ border-color:var(--text-muted); transform:translateY(-2px); }
+
+  .scroll-cue{
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    color:var(--text-muted); font-family:'JetBrains Mono',monospace; font-size:0.7rem;
+    letter-spacing:0.15em; opacity:0; animation: fadeUp .9s ease forwards; animation-delay:.8s;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:linear-gradient(var(--gold), transparent); animation:scrollLine 2s ease-in-out infinite; }
+
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(18px);} to{ opacity:1; transform:translateY(0);} }
+  @keyframes shimmer{ to{ background-position: 300% center; } }
+  @keyframes pulse{ 0%,100%{ opacity:1;} 50%{ opacity:.3;} }
+  @keyframes scrollLine{ 0%{ transform:scaleY(0); transform-origin:top; } 50%{ transform:scaleY(1); transform-origin:top;} 51%{ transform-origin:bottom;} 100%{ transform:scaleY(0); transform-origin:bottom;} }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:120px 0; position:relative; }
+  .section-head{ margin-bottom:56px; }
+  .section-tag{
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--gold);
+    text-transform:uppercase; letter-spacing:0.15em; display:block; margin-bottom:14px;
+  }
+  .section-title{ font-size:clamp(1.6rem,3.4vw,2.4rem); font-weight:700; max-width:640px; }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- ABOUT ---------- */
+  #about{ background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .about-grid{ display:grid; grid-template-columns: 1.3fr 1fr; gap:60px; align-items:start; }
+  .about-text p{ color:var(--text-muted); font-size:1.02rem; margin-bottom:18px; }
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .stat-card{
+    background:var(--bg-panel-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; transition:transform .3s ease, border-color .3s ease;
+  }
+  .stat-card:hover{ transform:translateY(-4px); border-color:rgba(242,185,92,0.4); }
+  .stat-num{ font-family:'Space Grotesk',sans-serif; font-size:1.9rem; font-weight:700; color:var(--gold); }
+  .stat-label{ font-size:0.82rem; color:var(--text-muted); margin-top:4px; }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; }
+  .skill-card{
+    background:var(--bg-panel-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+  .skill-card:hover{ transform:translateY(-6px); border-color:rgba(242,185,92,0.35); box-shadow:0 16px 40px rgba(0,0,0,0.35); }
+  .skill-card h3{ font-size:1rem; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+  .skill-icon{ width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; background:rgba(242,185,92,0.1); color:var(--gold); font-size:1rem; flex-shrink:0; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--text-muted);
+    border:1px solid var(--line); padding:6px 12px; border-radius:100px;
+    transition:all .25s ease;
+  }
+  .chip:hover{ border-color:var(--gold); color:var(--gold-soft); }
+
+  /* ---------- PROJECTS ---------- */
+  .project-list{ display:flex; flex-direction:column; gap:24px; }
+  .project-card{
+    background:var(--bg-panel-2); border:1px solid var(--line); border-radius:20px;
+    padding:38px; display:grid; grid-template-columns:70px 1fr; gap:30px;
+    position:relative; overflow:hidden; transition:border-color .3s ease, transform .3s ease;
+  }
+  .project-card:hover{ border-color:rgba(242,185,92,0.35); transform:translateY(-4px); }
+  .project-card::before{
+    content:''; position:absolute; top:0; left:0; width:4px; height:100%;
+    background:linear-gradient(var(--gold), var(--cyan)); transform:scaleY(0); transform-origin:top;
+    transition:transform .4s ease;
+  }
+  .project-card:hover::before{ transform:scaleY(1); }
+  .proj-index{ font-family:'Space Grotesk',sans-serif; font-size:2.2rem; font-weight:700; color:var(--line); }
+  .proj-title-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:10px; }
+  .proj-title{ font-size:1.35rem; font-weight:700; }
+  .proj-tags{ display:flex; gap:8px; flex-wrap:wrap; }
+  .proj-desc{ color:var(--text-muted); margin-bottom:16px; max-width:760px; }
+  .proj-points{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .proj-points li{ color:var(--text-muted); font-size:0.94rem; padding-left:20px; position:relative; }
+  .proj-points li::before{ content:'→'; position:absolute; left:0; color:var(--gold); }
+  .case-study-btn{
+    display:inline-flex; align-items:center; gap:8px; margin-top:22px;
+    font-family:'JetBrains Mono',monospace; font-size:0.8rem; font-weight:500;
+    color:var(--gold-soft); background:rgba(242,185,92,0.08); border:1px solid rgba(242,185,92,0.3);
+    padding:10px 18px; border-radius:100px; cursor:pointer; transition:all .25s ease;
+  }
+  .case-study-btn:hover{ background:var(--gold); color:#14110a; border-color:var(--gold); transform:translateX(2px); }
+  .case-study-btn svg{ width:14px; height:14px; transition:transform .25s ease; }
+  .case-study-btn:hover svg{ transform:translateX(3px); }
+
+  /* ---------- CASE STUDY MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:1000; background:rgba(6,8,14,0.78);
+    backdrop-filter:blur(6px); display:flex; align-items:flex-start; justify-content:center;
+    padding:60px 20px; opacity:0; pointer-events:none; transition:opacity .3s ease;
+    overflow-y:auto;
+  }
+  .modal-overlay.open{ opacity:1; pointer-events:auto; }
+  .modal-box{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:20px;
+    max-width:820px; width:100%; padding:0; position:relative;
+    transform:translateY(30px) scale(0.98); opacity:0; transition:transform .35s ease, opacity .35s ease;
+    margin-bottom:60px;
+  }
+  .modal-overlay.open .modal-box{ transform:translateY(0) scale(1); opacity:1; }
+  .modal-head{
+    padding:36px 40px 28px; border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:var(--bg-panel); border-radius:20px 20px 0 0; z-index:2;
+  }
+  .modal-close{
+    position:absolute; top:24px; right:24px; width:36px; height:36px; border-radius:50%;
+    border:1px solid var(--line); background:var(--bg-panel-2); color:var(--text);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem;
+    transition:all .25s ease;
+  }
+  .modal-close:hover{ border-color:var(--gold); color:var(--gold); transform:rotate(90deg); }
+  .modal-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--gold); text-transform:uppercase; letter-spacing:0.14em; display:block; margin-bottom:10px; }
+  .modal-title{ font-size:1.7rem; font-weight:700; margin-bottom:10px; max-width:600px; }
+  .modal-tagline{ color:var(--text-muted); font-size:0.98rem; max-width:600px; }
+  .modal-body{ padding:34px 40px 44px; display:flex; flex-direction:column; gap:32px; }
+  .cs-block-label{
+    display:flex; align-items:center; gap:12px; margin-bottom:14px;
+  }
+  .cs-block-num{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:0.82rem; color:var(--bg);
+    background:var(--gold); width:26px; height:26px; border-radius:7px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .cs-block-title{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.02rem; }
+  .cs-block-text{ color:var(--text-muted); font-size:0.95rem; padding-left:38px; }
+  .cs-block-text ul{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+  .cs-block-text li{ position:relative; padding-left:18px; }
+  .cs-block-text li::before{ content:'—'; position:absolute; left:0; color:var(--cyan); }
+  .cs-tech-row{ display:flex; flex-wrap:wrap; gap:8px; padding-left:38px; }
+  .cs-result-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; padding-left:38px; }
+  .cs-result-card{
+    background:var(--bg-panel-2); border:1px solid var(--line); border-radius:12px; padding:16px 18px;
+  }
+  .cs-result-num{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.3rem; color:var(--cyan); }
+  .cs-result-label{ font-size:0.8rem; color:var(--text-muted); margin-top:2px; }
+  @media (max-width:640px){
+    .modal-head{ padding:28px 24px 22px; }
+    .modal-body{ padding:26px 24px 36px; gap:26px; }
+    .cs-block-text, .cs-tech-row, .cs-result-grid{ padding-left:0; }
+  }
+
+  /* ---------- EDUCATION TIMELINE ---------- */
+  #education{ background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .timeline{ position:relative; padding-left:36px; }
+  .timeline::before{ content:''; position:absolute; left:6px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .tl-item{ position:relative; padding-bottom:44px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-dot{
+    position:absolute; left:-36px; top:4px; width:13px; height:13px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--gold); box-shadow:0 0 0 4px rgba(242,185,92,0.12);
+  }
+  .tl-period{ font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--gold-soft); margin-bottom:6px; display:block; }
+  .tl-title{ font-size:1.12rem; font-weight:700; margin-bottom:4px; }
+  .tl-place{ color:var(--text-muted); font-size:0.94rem; margin-bottom:8px; }
+  .tl-score{
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:0.78rem;
+    color:var(--cyan); border:1px solid rgba(95,208,224,0.3); background:rgba(95,208,224,0.06);
+    padding:4px 12px; border-radius:100px;
+  }
+
+  /* ---------- CERTIFICATIONS ---------- */
+  .cert-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+  .cert-card{
+    background:var(--bg-panel-2); border:1px solid var(--line); border-radius:12px;
+    padding:20px 22px; display:flex; align-items:center; gap:14px;
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .cert-card:hover{ transform:translateY(-4px); border-color:rgba(242,185,92,0.35); }
+  .cert-badge{
+    width:38px; height:38px; border-radius:10px; flex-shrink:0;
+    background:linear-gradient(135deg, rgba(242,185,92,0.18), rgba(95,208,224,0.12));
+    display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:1.1rem;
+  }
+  .cert-name{ font-size:0.92rem; font-weight:600; }
+
+  /* ---------- CONTACT ---------- */
+  #contact{ text-align:center; }
+  .contact-title{ font-size:clamp(2rem,5vw,3.2rem); font-weight:700; max-width:700px; margin:0 auto 20px; }
+  .contact-title span{ color:var(--gold); }
+  .contact-sub{ color:var(--text-muted); max-width:520px; margin:0 auto 40px; }
+  .contact-links{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:56px; }
+  .contact-pill{
+    display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:100px;
+    padding:12px 22px; font-size:0.9rem; transition:all .25s ease; background:var(--bg-panel-2);
+  }
+  .contact-pill:hover{ border-color:var(--gold); transform:translateY(-3px); color:var(--gold-soft); }
+  footer{ border-top:1px solid var(--line); padding:28px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-text{ color:var(--text-muted); font-size:0.82rem; font-family:'JetBrains Mono',monospace; }
+
+  @media (max-width:860px){
+    .nav-links{ display:none; }
+    .about-grid{ grid-template-columns:1fr; }
+    .project-card{ grid-template-columns:1fr; }
+    .proj-index{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">SOURAV <span>PANDEY</span></div>
+    <div class="nav-links">
+      <a href="javascript:void(0)" data-target="about">About</a>
+      <a href="javascript:void(0)" data-target="skills">Skills</a>
+      <a href="javascript:void(0)" data-target="projects">Projects</a>
+      <a href="javascript:void(0)" data-target="education">Education</a>
+      <a href="javascript:void(0)" data-target="certifications">Certs</a>
+      <a href="javascript:void(0)" data-target="contact" class="nav-cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="stars"></canvas>
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> OPEN TO ENTRY-LEVEL SOFTWARE DEVELOPER ROLES</div>
+    <h1 class="tagline">If you're dreaming, make sure you <span class="dream">dream big.</span></h1>
+    <p class="hero-sub">I'm Sourav Pandey, a Computer Science Engineering student building AI-powered applications and solving real-world problems through software — one project at a time.</p>
+    <div class="hero-cta">
+      <a href="javascript:void(0)" data-target="projects" class="btn-primary">View my work →</a>
+      <a href="javascript:void(0)" data-target="contact" class="btn-secondary">Get in touch</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <span class="section-tag">01 · About</span>
+      <h2 class="section-title" style="margin-bottom:24px;">Career objective</h2>
+      <div class="about-text">
+        <p>Computer Science Engineering student with strong knowledge of Data Structures & Algorithms, C++, Python, and Web Development.</p>
+        <p>Passionate about building AI-powered applications and solving real-world problems through software development. Seeking an entry-level Software Developer role where I can apply my technical skills, learn continuously, and contribute to impactful projects.</p>
+      </div>
+    </div>
+    <div class="stat-grid reveal">
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Major projects shipped</div></div>
+      <div class="stat-card"><div class="stat-num">7.20</div><div class="stat-label">CGPA at Chandigarh University</div></div>
+      <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Professional certifications</div></div>
+      <div class="stat-card"><div class="stat-num">2028</div><div class="stat-label">Expected graduation</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">02 · Skills</span>
+      <h2 class="section-title">Technical & professional toolkit</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3><span class="skill-icon">⌘</span> Programming Languages</h3>
+        <div class="chip-row"><span class="chip">C++</span><span class="chip">Java</span><span class="chip">Python</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="skill-icon">◆</span> Core CS</h3>
+        <div class="chip-row"><span class="chip">Data Structures</span><span class="chip">Algorithms</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="skill-icon">◇</span> Web Technologies</h3>
+        <div class="chip-row"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">React.js</span><span class="chip">Node.js</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="skill-icon">▤</span> Databases</h3>
+        <div class="chip-row"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="skill-icon">✦</span> Soft Skills</h3>
+        <div class="chip-row"><span class="chip">Problem Solving</span><span class="chip">Team Collaboration</span><span class="chip">Team Management</span><span class="chip">Leadership</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">03 · Projects</span>
+      <h2 class="section-title">Things I've built</h2>
+    </div>
+    <div class="project-list">
+
+      <div class="project-card reveal">
+        <div class="proj-index">01</div>
+        <div>
+          <div class="proj-title-row">
+            <div class="proj-title">SwayamShield</div>
+            <div class="proj-tags"><span class="chip">Healthcare</span><span class="chip">AI</span><span class="chip">Full-Stack</span></div>
+          </div>
+          <p class="proj-desc">A multi-role healthcare web application enabling real-time ambulance booking without login, with live distance tracking and ETA.</p>
+          <ul class="proj-points">
+            <li>Built patient, doctor, hospital, and admin dashboards for appointment management, resource tracking (beds, ambulances, doctors), and digital health records.</li>
+            <li>Integrated an AI-based symptom checker to assist users with preliminary diagnosis and treatment suggestions.</li>
+          </ul>
+          <button class="case-study-btn" data-case="swayamshield">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="proj-index">02</div>
+        <div>
+          <div class="proj-title-row">
+            <div class="proj-title">Food Rescue App</div>
+            <div class="proj-tags"><span class="chip">Social Impact</span><span class="chip">Full-Stack</span></div>
+          </div>
+          <p class="proj-desc">A platform that connects restaurants, events, and households with surplus food to nearby NGOs and individuals in need — cutting food waste while getting meals to people faster.</p>
+          <ul class="proj-points">
+            <li>Real-time listings for surplus food with location, quantity, and pickup window.</li>
+            <li>Role-based dashboards for donors, recipients/NGOs, and admins to coordinate pickups and track impact.</li>
+          </ul>
+          <button class="case-study-btn" data-case="foodrescue">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="proj-index">03</div>
+        <div>
+          <div class="proj-title-row">
+            <div class="proj-title">AI Voice Assistant</div>
+            <div class="proj-tags"><span class="chip">AI</span><span class="chip">Speech Recognition</span></div>
+          </div>
+          <p class="proj-desc">An intelligent voice-driven assistant designed to understand natural language and provide real-time responses.</p>
+          <ul class="proj-points">
+            <li>Integrates speech recognition with AI-powered processing to handle queries, tasks, and information seamlessly.</li>
+            <li>Built to enhance user interaction by delivering personalized, efficient, hands-free assistance.</li>
+          </ul>
+          <button class="case-study-btn" data-case="voiceassistant">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">04 · Education</span>
+      <h2 class="section-title">Academic background</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-period">2024 — 2028</span>
+        <div class="tl-title">Bachelor of Engineering, Computer Science</div>
+        <div class="tl-place">Chandigarh University, Gharuan</div>
+        <span class="tl-score">7.20 CGPA</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-period">2022 — 2023</span>
+        <div class="tl-title">Intermediate (CBSE)</div>
+        <div class="tl-place">DAV Kapil Dev Public School</div>
+        <span class="tl-score">68%</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-period">2020 — 2021</span>
+        <div class="tl-title">Matriculation (CBSE)</div>
+        <div class="tl-place">DAV Kapil Dev Public School</div>
+        <span class="tl-score">86%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">05 · Certifications</span>
+      <h2 class="section-title">Continuous learning</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal"><div class="cert-badge">☁</div><div class="cert-name">AWS Advanced Cloud Technologies</div></div>
+      <div class="cert-card reveal"><div class="cert-badge">✦</div><div class="cert-name">Gen AI & Prompt Engineering</div></div>
+      <div class="cert-card reveal"><div class="cert-badge">◆</div><div class="cert-name">Introduction to Machine Learning</div></div>
+      <div class="cert-card reveal"><div class="cert-badge">⌘</div><div class="cert-name">Applied Python Programming Systems</div></div>
+      <div class="cert-card reveal"><div class="cert-badge">▤</div><div class="cert-name">Data Analytics Using Python</div></div>
+      <div class="cert-card reveal"><div class="cert-badge">◇</div><div class="cert-name">Design Thinking & Creative Problem Solving</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2 class="contact-title">Let's build something <span>worth dreaming about.</span></h2>
+    <p class="contact-sub">Open to entry-level Software Developer roles and interesting collaborations. Reach out — I reply fast.</p>
+    <div class="contact-links">
+      <a class="contact-pill" href="mailto:souravpandey21042006@gmail.com">✉ souravpandey21042006@gmail.com</a>
+      <a class="contact-pill" href="tel:+916207569886">☎ +91 62075 69886</a>
+      <a class="contact-pill" href="https://www.linkedin.com/in/souravpandey-47560a346" target="_blank" rel="noopener">in LinkedIn</a>
+      <a class="contact-pill" href="https://github.com/Sourxv20" target="_blank" rel="noopener">⌥ GitHub</a>
+      <span class="contact-pill" style="cursor:default;">◎ Ranchi, Jharkhand</span>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap">
+      <span class="footer-text">© 2026 SOURAV PANDEY</span>
+      <span class="footer-text">DREAM BIG. BUILD BIGGER.</span>
+    </div>
+  </footer>
+</section>
+
+<div class="modal-overlay" id="caseModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <span class="modal-eyebrow" id="csEyebrow">Case Study</span>
+      <h3 class="modal-title" id="csTitle"></h3>
+      <p class="modal-tagline" id="csTagline"></p>
+    </div>
+    <div class="modal-body" id="csBody"></div>
+  </div>
+</div>
+
+<script>
+  // Starfield canvas
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    const count = Math.floor((canvas.width * canvas.height) / 9000);
+    stars = Array.from({length: count}, () => ({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*1.4 + 0.3,
+      a: Math.random(),
+      speed: Math.random()*0.015 + 0.003
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(const s of stars){
+      s.a += s.speed;
+      const op = Math.abs(Math.sin(s.a));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(242,230,200,${op})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.addEventListener('resize', resize);
+  resize();
+  if(!reduceMotion){ draw(); } else {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(const s of stars){
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(242,230,200,0.5)'; ctx.fill();
+    }
+  }
+
+  // Smooth-scroll for nav/CTA links (avoids hash navigation entirely)
+  document.querySelectorAll('[data-target]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById(el.getAttribute('data-target'));
+      if(target){ target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Case study data + modal logic
+  const caseStudies = {
+    swayamshield: {
+      eyebrow: "Case Study · Healthcare Platform",
+      title: "SwayamShield",
+      tagline: "A login-free emergency healthcare platform connecting patients, doctors, hospitals and ambulances in real time.",
+      problem: [
+        "In an emergency, people lose critical minutes creating accounts, searching for the nearest available ambulance, or trying to figure out which hospital has free beds.",
+        "Hospitals, doctors and patients also had no single system to manage appointments, track resources (beds, ambulances, staff), and access digital health records — everything lived in silos or on paper."
+      ],
+      approach: [
+        "Designed a login-free ambulance booking flow so a user in distress can request help within seconds — no signup friction at the moment it matters most.",
+        "Broke the platform into four role-based experiences — patient, doctor, hospital, and admin — each with a dashboard scoped to exactly what that role needs.",
+        "Layered in an AI-based symptom checker so patients get a preliminary read on urgency and next steps while help is on the way."
+      ],
+      architecture: [
+        "Frontend built with React.js for dynamic, role-based dashboards and real-time UI updates.",
+        "Node.js backend exposing REST APIs for bookings, appointments, resource tracking and health records.",
+        "MySQL/PostgreSQL for structured data — users, appointments, hospital resources, and health record history.",
+        "A geolocation + distance-calculation service to match the nearest available ambulance and compute live ETA.",
+        "A separate AI service layer for the symptom-checker, called asynchronously so it never blocks the emergency booking flow."
+      ],
+      tech: ["React.js", "Node.js", "MySQL", "PostgreSQL", "REST APIs", "Geolocation API", "AI/ML"],
+      results: [
+        { num: "4", label: "Role-based dashboards" },
+        { num: "0", label: "Login steps to book" },
+        { num: "Live", label: "Distance & ETA tracking" },
+        { num: "AI", label: "Symptom pre-check" }
+      ]
+    },
+    foodrescue: {
+      eyebrow: "Case Study · Social Impact Platform",
+      title: "Food Rescue App",
+      tagline: "Connecting surplus food from restaurants and events to the people and NGOs who need it, before it goes to waste.",
+      problem: [
+        "Restaurants, event organizers and households routinely end up with surplus, still-good food and no fast way to get it to someone who needs it before it spoils.",
+        "On the other side, NGOs and individuals looking for food donations have no real-time visibility into what's available nearby or when it can be picked up."
+      ],
+      approach: [
+        "Built a real-time listings system so a donor can post surplus food with location, quantity and pickup window in under a minute.",
+        "Designed role-based dashboards for donors, recipients/NGOs and admins so each side only sees what's relevant to them.",
+        "Prioritized pickup coordination — matching nearby recipients to fresh listings quickly — over a heavier, browse-everything marketplace model."
+      ],
+      architecture: [
+        "React.js frontend for donor and recipient dashboards with live listing updates.",
+        "Node.js + REST API backend handling listings, claims, and pickup coordination logic.",
+        "MySQL/PostgreSQL database storing listings, users, organizations and pickup history.",
+        "Location-based filtering to surface the closest, most time-sensitive listings first."
+      ],
+      tech: ["React.js", "Node.js", "MySQL", "PostgreSQL", "REST APIs"],
+      results: [
+        { num: "3", label: "User roles supported" },
+        { num: "Real-time", label: "Surplus food listings" },
+        { num: "Local", label: "Pickup matching" }
+      ]
+    },
+    voiceassistant: {
+      eyebrow: "Case Study · AI / Speech",
+      title: "AI Voice Assistant",
+      tagline: "A hands-free, voice-driven assistant that understands natural language and responds in real time.",
+      problem: [
+        "Typing out every query or command is slow and often impractical — especially for quick tasks, accessibility needs, or hands-busy situations.",
+        "Most simple voice tools only handle rigid, pre-set commands rather than genuinely understanding natural, conversational language."
+      ],
+      approach: [
+        "Combined speech recognition with AI-powered natural language processing so the assistant understands intent, not just fixed keywords.",
+        "Focused on real-time response — capturing speech, processing it, and replying with minimal lag to keep the interaction feeling natural.",
+        "Built around a hands-free interaction model so the assistant could handle everyday queries and tasks without the user touching a screen."
+      ],
+      architecture: [
+        "Speech-to-text layer to capture and transcribe user voice input.",
+        "Python-based NLP/AI processing layer to interpret intent and generate a relevant response.",
+        "Text-to-speech (or response) layer to deliver the answer back to the user in real time.",
+        "Modular design so new query types/tasks can be added without reworking the core pipeline."
+      ],
+      tech: ["Python", "Speech Recognition", "Natural Language Processing", "AI"],
+      results: [
+        { num: "Real-time", label: "Query & response cycle" },
+        { num: "Hands-free", label: "Interaction model" },
+        { num: "NLP", label: "Powered understanding" }
+      ]
+    }
+  };
+
+  function renderCaseStudy(key){
+    const cs = caseStudies[key];
+    if(!cs) return;
+    document.getElementById('csEyebrow').textContent = cs.eyebrow;
+    document.getElementById('csTitle').textContent = cs.title;
+    document.getElementById('csTagline').textContent = cs.tagline;
+
+    const listHtml = (arr) => `<ul>${arr.map(i => `<li>${i}</li>`).join('')}</ul>`;
+    const chipsHtml = cs.tech.map(t => `<span class="chip">${t}</span>`).join('');
+    const resultsHtml = cs.results.map(r => `
+      <div class="cs-result-card">
+        <div class="cs-result-num">${r.num}</div>
+        <div class="cs-result-label">${r.label}</div>
+      </div>`).join('');
+
+    document.getElementById('csBody').innerHTML = `
+      <div>
+        <div class="cs-block-label"><span class="cs-block-num">1</span><span class="cs-block-title">Problem</span></div>
+        <div class="cs-block-text">${listHtml(cs.problem)}</div>
+      </div>
+      <div>
+        <div class="cs-block-label"><span class="cs-block-num">2</span><span class="cs-block-title">Approach</span></div>
+        <div class="cs-block-text">${listHtml(cs.approach)}</div>
+      </div>
+      <div>
+        <div class="cs-block-label"><span class="cs-block-num">3</span><span class="cs-block-title">Architecture</span></div>
+        <div class="cs-block-text">${listHtml(cs.architecture)}</div>
+      </div>
+      <div>
+        <div class="cs-block-label"><span class="cs-block-num">4</span><span class="cs-block-title">Tech Stack</span></div>
+        <div class="cs-tech-row">${chipsHtml}</div>
+      </div>
+      <div>
+        <div class="cs-block-label"><span class="cs-block-num">5</span><span class="cs-block-title">Results & Outcomes</span></div>
+        <div class="cs-result-grid">${resultsHtml}</div>
+      </div>
+    `;
+  }
+
+  const modal = document.getElementById('caseModal');
+  document.querySelectorAll('.case-study-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      renderCaseStudy(btn.getAttribute('data-case'));
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
