@@ -193,8 +193,9 @@
   .proj-points{ list-style:none; display:flex; flex-direction:column; gap:8px; }
   .proj-points li{ color:var(--text-muted); font-size:0.94rem; padding-left:20px; position:relative; }
   .proj-points li::before{ content:'→'; position:absolute; left:0; color:var(--gold); }
+  .proj-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
   .case-study-btn{
-    display:inline-flex; align-items:center; gap:8px; margin-top:22px;
+    display:inline-flex; align-items:center; gap:8px; margin-top:0;
     font-family:'JetBrains Mono',monospace; font-size:0.8rem; font-weight:500;
     color:var(--gold-soft); background:rgba(242,185,92,0.08); border:1px solid rgba(242,185,92,0.3);
     padding:10px 18px; border-radius:100px; cursor:pointer; transition:all .25s ease;
@@ -202,6 +203,16 @@
   .case-study-btn:hover{ background:var(--gold); color:#14110a; border-color:var(--gold); transform:translateX(2px); }
   .case-study-btn svg{ width:14px; height:14px; transition:transform .25s ease; }
   .case-study-btn:hover svg{ transform:translateX(3px); }
+
+  /* live demo button */
+  .live-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:0.8rem; font-weight:600;
+    color:#14110a; background:var(--gold); border:1px solid var(--gold);
+    padding:10px 18px; border-radius:100px; cursor:pointer; transition:all .25s ease;
+  }
+  .live-btn:hover{ background:var(--gold-soft); border-color:var(--gold-soft); transform:translateY(-2px); box-shadow:0 8px 24px rgba(242,185,92,0.25); }
+  .live-btn .live-dot{ width:7px; height:7px; border-radius:50%; background:#14110a; animation:pulse 2s infinite; }
 
   /* ---------- CASE STUDY MODAL ---------- */
   .modal-overlay{
@@ -253,10 +264,11 @@
   }
   .cs-result-num{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.3rem; color:var(--cyan); }
   .cs-result-label{ font-size:0.8rem; color:var(--text-muted); margin-top:2px; }
+  .cs-link-row{ padding-left:38px; }
   @media (max-width:640px){
     .modal-head{ padding:28px 24px 22px; }
     .modal-body{ padding:26px 24px 36px; gap:26px; }
-    .cs-block-text, .cs-tech-row, .cs-result-grid{ padding-left:0; }
+    .cs-block-text, .cs-tech-row, .cs-result-grid, .cs-link-row{ padding-left:0; }
   }
 
   /* ---------- EDUCATION TIMELINE ---------- */
@@ -382,7 +394,7 @@
       </div>
     </div>
     <div class="stat-grid reveal">
-      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Major projects shipped</div></div>
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Major projects shipped</div></div>
       <div class="stat-card"><div class="stat-num">6.63</div><div class="stat-label">CGPA at Chandigarh University</div></div>
       <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Professional certifications</div></div>
       <div class="stat-card"><div class="stat-num">2028</div><div class="stat-label">Expected graduation</div></div>
@@ -478,6 +490,26 @@
         <div class="proj-index">01</div>
         <div>
           <div class="proj-title-row">
+            <div class="proj-title">FitTrack</div>
+            <div class="proj-tags"><span class="chip">Fitness</span><span class="chip">Full-Stack</span><span class="chip">GPS Tracking</span></div>
+          </div>
+          <p class="proj-desc">A fitness platform that brings gym workouts, real GPS running tracking, and progress analytics together in one place — built around the idea of training smarter and running stronger.</p>
+          <ul class="proj-points">
+            <li>Treats gym training and running as equals, so strength workouts and runs live in the same dashboard instead of two separate apps.</li>
+            <li>Tracks runs with real GPS and turns workout history into progress analytics to show how training improves over time.</li>
+            <li>Mobile-first, dashboard-style interface, deployed live on Vercel.</li>
+          </ul>
+          <div class="proj-actions">
+            <button class="case-study-btn" data-case="fittrack">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <a class="live-btn" href="https://fittrack-pied-five.vercel.app" target="_blank" rel="noopener"><span class="live-dot"></span>Live demo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="proj-index">02</div>
+        <div>
+          <div class="proj-title-row">
             <div class="proj-title">SwayamShield</div>
             <div class="proj-tags"><span class="chip">Healthcare</span><span class="chip">AI</span><span class="chip">Full-Stack</span></div>
           </div>
@@ -486,12 +518,14 @@
             <li>Built patient, doctor, hospital, and admin dashboards for appointment management, resource tracking (beds, ambulances, doctors), and digital health records.</li>
             <li>Integrated an AI-based symptom checker to assist users with preliminary diagnosis and treatment suggestions.</li>
           </ul>
-          <button class="case-study-btn" data-case="swayamshield">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <div class="proj-actions">
+            <button class="case-study-btn" data-case="swayamshield">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <div class="proj-index">02</div>
+        <div class="proj-index">03</div>
         <div>
           <div class="proj-title-row">
             <div class="proj-title">Food Rescue App</div>
@@ -502,12 +536,14 @@
             <li>Real-time listings for surplus food with location, quantity, and pickup window.</li>
             <li>Role-based dashboards for donors, recipients/NGOs, and admins to coordinate pickups and track impact.</li>
           </ul>
-          <button class="case-study-btn" data-case="foodrescue">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <div class="proj-actions">
+            <button class="case-study-btn" data-case="foodrescue">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
         </div>
       </div>
 
       <div class="project-card reveal">
-        <div class="proj-index">03</div>
+        <div class="proj-index">04</div>
         <div>
           <div class="proj-title-row">
             <div class="proj-title">AI Voice Assistant</div>
@@ -518,7 +554,9 @@
             <li>Integrates speech recognition with AI-powered processing to handle queries, tasks, and information seamlessly.</li>
             <li>Built to enhance user interaction by delivering personalized, efficient, hands-free assistance.</li>
           </ul>
-          <button class="case-study-btn" data-case="voiceassistant">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <div class="proj-actions">
+            <button class="case-study-btn" data-case="voiceassistant">View case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
         </div>
       </div>
 
@@ -658,6 +696,35 @@
 
   // Case study data + modal logic
   const caseStudies = {
+    fittrack: {
+      eyebrow: "Case Study · Fitness Platform",
+      title: "FitTrack",
+      tagline: "Train Smarter. Run Stronger. — gym workouts, real GPS running tracking and progress analytics in one dashboard.",
+      link: "https://fittrack-pied-five.vercel.app",
+      problem: [
+        "Most fitness apps pick a side: they're built either for lifters or for runners, so anyone who does both ends up juggling separate apps and scattered data.",
+        "When strength sessions and runs live in different places, it's hard to see real progress, which makes it harder to stay consistent and train with intent."
+      ],
+      approach: [
+        "Built gym training and running as equal, first-class features rather than treating one as an add-on to the other.",
+        "Used real GPS tracking for runs so distance and routes come from actual movement instead of manual entry.",
+        "Added progress analytics so workouts and runs roll up into one clear view of how training is trending over time.",
+        "Designed a mobile-first, dashboard-style interface that feels like an app and works comfortably on any screen size."
+      ],
+      architecture: [
+        "Next.js web app powering the dashboard UI, workout logging and analytics views.",
+        "Node.js/Express REST API for workouts, runs and user progress data.",
+        "Browser geolocation (GPS) integration to capture run distance and route in real time.",
+        "Deployed on Vercel for fast, always-on public access."
+      ],
+      tech: ["Next.js", "React", "Node.js", "Express", "REST APIs", "Geolocation API", "Vercel"],
+      results: [
+        { num: "2", label: "Training modes: gym + running" },
+        { num: "GPS", label: "Real run tracking" },
+        { num: "Analytics", label: "Progress insights" },
+        { num: "Live", label: "Deployed on Vercel" }
+      ]
+    },
     swayamshield: {
       eyebrow: "Case Study · Healthcare Platform",
       title: "SwayamShield",
@@ -754,6 +821,10 @@
         <div class="cs-result-num">${r.num}</div>
         <div class="cs-result-label">${r.label}</div>
       </div>`).join('');
+    const linkHtml = cs.link ? `
+      <div class="cs-link-row">
+        <a class="live-btn" href="${cs.link}" target="_blank" rel="noopener"><span class="live-dot"></span>Visit live site ↗</a>
+      </div>` : '';
 
     document.getElementById('csBody').innerHTML = `
       <div>
@@ -776,6 +847,7 @@
         <div class="cs-block-label"><span class="cs-block-num">5</span><span class="cs-block-title">Results & Outcomes</span></div>
         <div class="cs-result-grid">${resultsHtml}</div>
       </div>
+      ${linkHtml}
     `;
   }
 
