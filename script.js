@@ -346,10 +346,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* =====================================================
-     CUSTOM CURSOR & LENS FLARE TRACKING
+     CUSTOM CURSOR
   ===================================================== */
   const dot = $('#cDot'), ring = $('#cRing'), ringLabel = $('span', ring), glow = $('#cursorGlow');
-  const lensFlare = $('#lensFlare');
   const useCursor = finePointer && !reduce;
   let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my, gx = mx, gy = my;
 
@@ -358,12 +357,6 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.pointerType !== 'mouse') return;
       mx = e.clientX; my = e.clientY;
       if (!root.classList.contains('has-cursor')) { rx = mx; ry = my; gx = mx; gy = my; root.classList.add('has-cursor'); }
-
-      // Dynamic anamorphic lens flare tracking
-      if (lensFlare) {
-        const py = (e.clientY / innerHeight - 0.5) * 60;
-        lensFlare.style.transform = `translate3d(0, ${py}px, 0)`;
-      }
     }, { passive: true });
 
     document.addEventListener('mouseleave', () => root.classList.remove('has-cursor'));
