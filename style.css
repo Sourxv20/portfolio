@@ -374,7 +374,11 @@ section { padding: clamp(80px, 11vw, 140px) 0; position: relative; }
 
 /* Viewfinder Frame overlay */
 .hero-viewfinder {
-  position: absolute; inset: 24px;
+  position: absolute;
+  top: 88px;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
   border: 1px solid rgba(242, 185, 92, 0.12);
   border-radius: 20px;
   pointer-events: none;
