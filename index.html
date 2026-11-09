@@ -4,29 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Sourav Pandey — Computer Science Engineering student and entry-level software developer. DSA, C++, Python, React, Node.js and AI-powered apps.">
-<meta name="theme-color" content="#0B0F1A">
+<meta name="theme-color" content="#050811">
 <meta property="og:title" content="Sourav Pandey — Software Developer">
 <meta property="og:description" content="Computer Science Engineering student building AI-powered applications and solving real-world problems through software.">
 <meta property="og:type" content="website">
-<title>Sourav Pandey — Software Developer</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0F1A'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='700' text-anchor='middle' fill='%23F2B95C'%3ESP%3C/text%3E%3C/svg%3E">
+<title>Sourav Pandey — Software Developer · Cinematic Portfolio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050811'/%3E%3Ctext x='32' y='43' font-size='30' font-family='Arial' font-weight='700' text-anchor='middle' fill='%23F2B95C'%3ESP%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js','loading');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- Optional buttery-smooth scrolling. If this CDN file fails to load, the site falls back to normal scrolling automatically. -->
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Cinematic Letterbox Framing (2.39:1 Anamorphic) -->
+<div class="cinema-letterbox top" aria-hidden="true">
+  <span>SOURAV PANDEY // CINEMA REEL</span>
+  <span><span class="cl-highlight">● REC</span> 24.00 FPS · 35MM T1.5</span>
+  <span>SCOPE 2.39:1</span>
+</div>
+<div class="cinema-letterbox bottom" aria-hidden="true">
+  <span>CHANDIGARH UNIVERSITY · BE CSE '28</span>
+  <span id="letterboxTc">TC 00:00:00:00</span>
+  <span>PRODUCTION © 2026</span>
+</div>
+
+<!-- Cinematic Optical Layers -->
+<div class="cinematic-vignette" aria-hidden="true"></div>
+<div class="lens-flare-layer" id="lensFlare" aria-hidden="true"></div>
+
 <!-- Preloader -->
 <div class="preloader" id="preloader" aria-hidden="true">
   <div class="pre-inner">
+    <div class="pre-studio-tag">A PRODUCTION BY</div>
     <div class="pre-name mono">SOURAV PANDEY</div>
     <div class="pre-count"><span id="preNum">0</span><small>%</small></div>
+    <div class="pre-telemetry" id="preStatus">INITIALIZING CINEMATIC SEQUENCE</div>
     <div class="pre-bar"><span id="preBar"></span></div>
   </div>
+  <button class="pre-skip" id="preSkip" type="button">SKIP INTRO ⏭</button>
 </div>
 
 <!-- Ambient background + cursor -->
@@ -41,14 +60,24 @@
 
 <nav id="nav" aria-label="Main">
   <div class="wrap">
-    <a href="#top" class="logo" data-target="top" data-magnetic>SOURAV <span>PANDEY</span></a>
+    <a href="#top" class="logo" data-target="top" data-magnetic>SOURAV <span>PANDEY</span><span class="logo-badge">DEV</span></a>
     <div class="nav-links">
-      <a href="#about" data-target="about">About</a>
-      <a href="#skills" data-target="skills">Skills</a>
-      <a href="#coding" data-target="coding">Coding Profiles</a>
-      <a href="#projects" data-target="projects">Projects</a>
-      <a href="#education" data-target="education">Education</a>
+      <a href="#about" data-target="about">Prologue</a>
+      <a href="#skills" data-target="skills">Arsenal</a>
+      <a href="#coding" data-target="coding">Arena</a>
+      <a href="#projects" data-target="projects">Reels</a>
+      <a href="#education" data-target="education">Chronicles</a>
       <a href="#certifications" data-target="certifications">Certs</a>
+    </div>
+    <div class="nav-extras">
+      <button class="cinema-btn audio-btn" id="audioToggle" aria-label="Toggle cinematic audio" data-magnetic type="button">
+        <span class="audio-waves"><span></span><span></span><span></span><span></span></span>
+        <span class="audio-label">AUDIO OFF</span>
+      </button>
+      <button class="cinema-btn mode-btn" id="cinemaToggle" aria-label="Toggle 2.39:1 Cinema Mode" data-magnetic type="button">
+        <span>⛶</span>
+        <span class="mode-label">CINEMA</span>
+      </button>
       <a href="#contact" data-target="contact" class="nav-cta" data-magnetic>Contact</a>
     </div>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
@@ -56,35 +85,66 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about" data-target="about">About <small>01</small></a>
-  <a href="#skills" data-target="skills">Skills <small>02</small></a>
-  <a href="#coding" data-target="coding">Coding Profiles <small>03</small></a>
-  <a href="#projects" data-target="projects">Projects <small>04</small></a>
-  <a href="#education" data-target="education">Education <small>05</small></a>
+  <a href="#about" data-target="about">Prologue <small>01</small></a>
+  <a href="#skills" data-target="skills">Arsenal <small>02</small></a>
+  <a href="#coding" data-target="coding">Arena <small>03</small></a>
+  <a href="#projects" data-target="projects">Reels <small>04</small></a>
+  <a href="#education" data-target="education">Chronicles <small>05</small></a>
   <a href="#certifications" data-target="certifications">Certifications <small>06</small></a>
-  <a href="#contact" data-target="contact">Contact <small>07</small></a>
+  <a href="#contact" data-target="contact">Credits <small>07</small></a>
+  <div class="mobile-controls">
+    <button class="cinema-btn audio-btn" id="mobAudioToggle" type="button">
+      <span class="audio-waves"><span></span><span></span><span></span><span></span></span>
+      <span>AUDIO</span>
+    </button>
+    <button class="cinema-btn mode-btn" id="mobCinemaToggle" type="button">
+      <span>⛶</span>
+      <span>CINEMA MODE</span>
+    </button>
+  </div>
 </div>
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="hero-glow" data-speed="0.18"></div>
+  
+  <!-- Viewfinder Overlay -->
+  <div class="hero-viewfinder" aria-hidden="true">
+    <div class="vf-corner vf-tl"></div>
+    <div class="vf-corner vf-tr"></div>
+    <div class="vf-corner vf-bl"></div>
+    <div class="vf-corner vf-br"></div>
+    <div class="vf-telemetry vf-top">
+      <span class="vf-rec"><span class="vf-rec-dot"></span>REC [●] LIVE</span>
+      <span class="vf-spec">35MM T1.5 · RAW · ISO 800</span>
+      <span id="heroTc">TC 00:00:14:08</span>
+    </div>
+    <div class="vf-crosshair"></div>
+    <div class="vf-telemetry vf-bottom">
+      <span>FPS: 24.00 // SHUTTER 180°</span>
+      <span>CINEMASCOPE 2.39:1</span>
+      <span>RANCHI · CHANDIGARH</span>
+    </div>
+  </div>
+
   <div class="wrap">
     <div class="hero-grid" id="heroGrid">
       <div class="hero-copy">
         <div class="eyebrow hero-in" style="--d:.15s"><span class="dot"></span> OPEN TO ENTRY-LEVEL SOFTWARE DEVELOPER ROLES</div>
+        <span class="tagline-subquote hero-in" style="--d:.35s">ACT I · PROLOGUE // SOURAV PANDEY</span>
         <h1 class="tagline split" id="tagline">If you're dreaming, make sure you <span class="dream">dream big.</span></h1>
         <p class="role-line hero-in" style="--d:.55s"><span class="sr-only">Full-Stack Developer, DSA problem solver and AI application builder.</span><span aria-hidden="true">I'm a </span><span class="typed" id="typed" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span></p>
         <p class="hero-sub hero-in" style="--d:.7s">I'm Sourav Pandey, a Computer Science Engineering student building AI-powered applications and solving real-world problems through software — one project at a time.</p>
         <div class="hero-cta hero-in" style="--d:.85s">
-          <a href="#projects" data-target="projects" class="btn-primary" data-magnetic>View my work →</a>
-          <a href="#contact" data-target="contact" class="btn-secondary" data-magnetic>Get in touch</a>
+          <a href="#projects" data-target="projects" class="btn-primary" data-magnetic>View feature reels →</a>
+          <a href="#contact" data-target="contact" class="btn-secondary" data-magnetic>Initiate contact</a>
         </div>
       </div>
       <div class="hero-visual hero-in" style="--d:.7s">
         <div class="float-badge fb1"><span class="dot"></span> Open to work</div>
         <div class="code-card" data-tilt="9">
-          <div class="cc-bar"><i></i><i></i><i></i><span class="mono">sourav.ts</span></div>
+          <div class="cc-bar"><i></i><i></i><i></i><span class="mono">sourav.ts // Production Config</span></div>
 <pre class="mono"><code><span class="k">const</span> <span class="v">sourav</span> = {
   <span class="p">role</span>: <span class="s">"Software Developer"</span>,
   <span class="p">stack</span>: [<span class="s">"C++"</span>, <span class="s">"React"</span>,
@@ -96,11 +156,11 @@
 
 <span class="c">// let's build something big →</span></code></pre>
         </div>
-        <div class="float-badge fb2">4 projects shipped</div>
+        <div class="float-badge fb2">4 productions shipped</div>
       </div>
     </div>
   </div>
-  <div class="scroll-cue hero-in" style="--d:1.1s" aria-hidden="true"><span>SCROLL</span><span class="line"></span></div>
+  <div class="scroll-cue hero-in" style="--d:1.1s" aria-hidden="true"><span>EXPLORE SCENE</span><span class="line"></span></div>
 </section>
 
 <div class="marquee" data-marquee="0.7" aria-hidden="true">
@@ -109,12 +169,14 @@
   </div>
 </div>
 
+<div class="scene-divider" aria-hidden="true"></div>
+
 <!-- ================= ABOUT ================= -->
 <section id="about">
   <div class="wrap about-grid">
     <div>
-      <div class="reveal"><span class="section-tag">01 · About</span></div>
-      <h2 class="section-title split" style="margin-bottom:24px;">Career objective</h2>
+      <div class="reveal"><span class="section-tag">Act I · Prologue // Career Objective</span></div>
+      <h2 class="section-title split" style="margin-bottom:24px;">Engineering the future through code</h2>
       <div class="about-text">
         <p class="reveal" style="--d:.1s">Computer Science Engineering student with strong knowledge of Data Structures &amp; Algorithms, C++, Python, and Web Development.</p>
         <p class="reveal" style="--d:.2s">Passionate about building AI-powered applications and solving real-world problems through software development. Seeking an entry-level Software Developer role where I can apply my technical skills, learn continuously, and contribute to impactful projects.</p>
@@ -129,12 +191,14 @@
   </div>
 </section>
 
+<div class="scene-divider" aria-hidden="true"></div>
+
 <!-- ================= SKILLS ================= -->
 <section id="skills">
   <div class="wrap">
     <div class="section-head">
-      <div class="reveal"><span class="section-tag">02 · Skills</span></div>
-      <h2 class="section-title split">Technical &amp; professional toolkit</h2>
+      <div class="reveal"><span class="section-tag">Act II · The Arsenal // Technical Toolkit</span></div>
+      <h2 class="section-title split">Technologies &amp; core competencies</h2>
     </div>
     <div class="skills-grid" data-stagger>
       <div class="skill-card spot reveal" data-tilt="7">
@@ -142,31 +206,33 @@
         <div class="chip-row"><span class="chip">C++</span><span class="chip">C</span><span class="chip">Java</span><span class="chip">Python</span></div>
       </div>
       <div class="skill-card spot reveal" data-tilt="7">
-        <h3><span class="skill-icon">◆</span> Core CS</h3>
-        <div class="chip-row"><span class="chip">Data Structures</span><span class="chip">Algorithms</span></div>
+        <h3><span class="skill-icon">◆</span> Core Computer Science</h3>
+        <div class="chip-row"><span class="chip">Data Structures</span><span class="chip">Algorithms</span><span class="chip">OOP</span></div>
       </div>
       <div class="skill-card spot reveal" data-tilt="7">
         <h3><span class="skill-icon">◇</span> Web Technologies</h3>
         <div class="chip-row"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">React.js</span><span class="chip">Node.js</span></div>
       </div>
       <div class="skill-card spot reveal" data-tilt="7">
-        <h3><span class="skill-icon">▤</span> Databases</h3>
-        <div class="chip-row"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span></div>
+        <h3><span class="skill-icon">▤</span> Databases &amp; Backend</h3>
+        <div class="chip-row"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">REST APIs</span></div>
       </div>
       <div class="skill-card spot reveal" data-tilt="7">
-        <h3><span class="skill-icon">✦</span> Soft Skills</h3>
+        <h3><span class="skill-icon">✦</span> Leadership &amp; Soft Skills</h3>
         <div class="chip-row"><span class="chip">Problem Solving</span><span class="chip">Team Collaboration</span><span class="chip">Team Management</span><span class="chip">Leadership</span></div>
       </div>
     </div>
   </div>
 </section>
 
+<div class="scene-divider" aria-hidden="true"></div>
+
 <!-- ================= CODING PROFILES ================= -->
 <section id="coding">
   <div class="wrap">
     <div class="section-head">
-      <div class="reveal"><span class="section-tag">03 · Coding Profiles</span></div>
-      <h2 class="section-title split">Where I practice &amp; compete</h2>
+      <div class="reveal"><span class="section-tag">Act III · The Arena // Competitive Profiles</span></div>
+      <h2 class="section-title split">Where algorithms meet execution</h2>
     </div>
     <div class="coding-grid" data-stagger>
 
@@ -198,24 +264,52 @@
   </div>
 </section>
 
-<!-- ================= PROJECTS (stacking cards) ================= -->
+<div class="scene-divider" aria-hidden="true"></div>
+
+<!-- ================= PROJECTS (Feature Productions) ================= -->
 <section id="projects">
   <div class="wrap">
     <div class="section-head">
-      <div class="reveal"><span class="section-tag">04 · Projects</span></div>
-      <h2 class="section-title split">Things I've built</h2>
+      <div class="reveal"><span class="section-tag">Act IV · Feature Reels // Selected Productions</span></div>
+      <h2 class="section-title split">Architected solutions &amp; live apps</h2>
     </div>
     <div class="project-list">
 
+      <!-- 01 FitTrack -->
       <div class="stack-item" style="--i:0">
         <div class="project-card spot">
-          <div class="proj-index">01</div>
+          <div class="proj-index-col">
+            <div class="proj-index">01</div>
+            <span class="proj-reel-badge">REEL I</span>
+          </div>
           <div>
             <div class="proj-title-row">
               <div class="proj-title">FitTrack</div>
-              <div class="proj-tags"><span class="chip">Fitness</span><span class="chip">Full-Stack</span><span class="chip">GPS Tracking</span></div>
+              <div class="proj-tags"><span class="chip">Fitness</span><span class="chip">Full-Stack</span><span class="chip">GPS Telemetry</span></div>
             </div>
-            <p class="proj-desc">A fitness platform that brings gym workouts, real GPS running tracking, and progress analytics together in one place — built around the idea of training smarter and running stronger.</p>
+            <p class="proj-desc">A unified fitness platform that bridges the gap between gym strength training, live GPS route tracking, and progress telemetry — built around the philosophy of training smarter and running stronger.</p>
+
+            <!-- Cinematic Visual Poster -->
+            <div class="proj-poster">
+              <div class="poster-header">
+                <span>TELEMETRY MATRIX // SATELLITE LOCK</span>
+                <span class="poster-status"><span class="dot"></span>LIVE DISPATCH</span>
+              </div>
+              <svg class="poster-viz" viewBox="0 0 600 50" fill="none">
+                <line x1="0" y1="45" x2="600" y2="45" stroke="#1c273e" stroke-width="1" />
+                <path d="M0,40 Q60,35 120,20 T240,30 T360,10 T480,25 T600,15" stroke="url(#goldGrad)" stroke-width="2" fill="none" />
+                <circle cx="360" cy="10" r="4" fill="#F2B95C" />
+                <circle cx="360" cy="10" r="8" stroke="#F2B95C" stroke-width="1" opacity="0.6" />
+                <defs>
+                  <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#5FD0E0" />
+                    <stop offset="50%" stop-color="#F2B95C" />
+                    <stop offset="100%" stop-color="#5FD0E0" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
             <ul class="proj-points">
               <li>Treats gym training and running as equals, so strength workouts and runs live in the same dashboard instead of two separate apps.</li>
               <li>Tracks runs with real GPS and turns workout history into progress analytics to show how training improves over time.</li>
@@ -229,15 +323,33 @@
         </div>
       </div>
 
+      <!-- 02 SwayamShield -->
       <div class="stack-item" style="--i:1">
         <div class="project-card spot">
-          <div class="proj-index">02</div>
+          <div class="proj-index-col">
+            <div class="proj-index">02</div>
+            <span class="proj-reel-badge">REEL II</span>
+          </div>
           <div>
             <div class="proj-title-row">
               <div class="proj-title">SwayamShield</div>
-              <div class="proj-tags"><span class="chip">Healthcare</span><span class="chip">AI</span><span class="chip">Full-Stack</span></div>
+              <div class="proj-tags"><span class="chip">Healthcare</span><span class="chip">AI Triage</span><span class="chip">Full-Stack</span></div>
             </div>
-            <p class="proj-desc">A multi-role healthcare web application enabling real-time ambulance booking without login, with live distance tracking and ETA.</p>
+            <p class="proj-desc">A multi-role emergency healthcare platform enabling friction-free ambulance dispatch without prior authentication, featuring real-time distance calculations and live ETA tracking.</p>
+
+            <!-- Cinematic Visual Poster -->
+            <div class="proj-poster">
+              <div class="poster-header">
+                <span>EMERGENCY DISPATCH // RADAR &amp; ECG VITAL STREAM</span>
+                <span class="poster-status"><span class="dot"></span>ACTIVE BEACON</span>
+              </div>
+              <svg class="poster-viz" viewBox="0 0 600 50" fill="none">
+                <path d="M0,25 L180,25 L195,10 L210,40 L225,5 L240,35 L255,25 L600,25" stroke="#5FD0E0" stroke-width="2" stroke-linecap="round" fill="none" />
+                <circle cx="225" cy="5" r="4" fill="#5FD0E0" />
+                <circle cx="225" cy="5" r="9" stroke="#5FD0E0" stroke-width="1" opacity="0.5" />
+              </svg>
+            </div>
+
             <ul class="proj-points">
               <li>Built patient, doctor, hospital, and admin dashboards for appointment management, resource tracking (beds, ambulances, doctors), and digital health records.</li>
               <li>Integrated an AI-based symptom checker to assist users with preliminary diagnosis and treatment suggestions.</li>
@@ -250,15 +362,37 @@
         </div>
       </div>
 
+      <!-- 03 Food Rescue -->
       <div class="stack-item" style="--i:2">
         <div class="project-card spot">
-          <div class="proj-index">03</div>
+          <div class="proj-index-col">
+            <div class="proj-index">03</div>
+            <span class="proj-reel-badge">REEL III</span>
+          </div>
           <div>
             <div class="proj-title-row">
               <div class="proj-title">Food Rescue App</div>
-              <div class="proj-tags"><span class="chip">Social Impact</span><span class="chip">Full-Stack</span></div>
+              <div class="proj-tags"><span class="chip">Social Impact</span><span class="chip">Logistics</span><span class="chip">Full-Stack</span></div>
             </div>
-            <p class="proj-desc">A platform that connects restaurants, events, and households with surplus food to nearby NGOs and individuals in need — cutting food waste while getting meals to people faster.</p>
+            <p class="proj-desc">A logistical platform connecting restaurants, caterers, and households with surplus food to verified NGOs and local community shelters — preventing food waste while feeding vulnerable populations.</p>
+
+            <!-- Cinematic Visual Poster -->
+            <div class="proj-poster">
+              <div class="poster-header">
+                <span>DISTRIBUTION TOPOLOGY // RELIEF LOGISTICS</span>
+                <span class="poster-status"><span class="dot"></span>ACTIVE ROUTING</span>
+              </div>
+              <svg class="poster-viz" viewBox="0 0 600 50" fill="none">
+                <circle cx="80" cy="25" r="5" fill="#F2B95C" />
+                <circle cx="240" cy="15" r="6" fill="#5FD0E0" />
+                <circle cx="380" cy="35" r="5" fill="#F2B95C" />
+                <circle cx="520" cy="20" r="7" fill="#5FD0E0" />
+                <line x1="80" y1="25" x2="240" y2="15" stroke="rgba(242,185,92,0.4)" stroke-dasharray="4 4" stroke-width="1.5" />
+                <line x1="240" y1="15" x2="380" y2="35" stroke="rgba(95,208,224,0.4)" stroke-dasharray="4 4" stroke-width="1.5" />
+                <line x1="380" y1="35" x2="520" y2="20" stroke="rgba(242,185,92,0.4)" stroke-dasharray="4 4" stroke-width="1.5" />
+              </svg>
+            </div>
+
             <ul class="proj-points">
               <li>Real-time listings for surplus food with location, quantity, and pickup window.</li>
               <li>Role-based dashboards for donors, recipients/NGOs, and admins to coordinate pickups and track impact.</li>
@@ -270,15 +404,34 @@
         </div>
       </div>
 
+      <!-- 04 AI Voice Assistant -->
       <div class="stack-item" style="--i:3">
         <div class="project-card spot">
-          <div class="proj-index">04</div>
+          <div class="proj-index-col">
+            <div class="proj-index">04</div>
+            <span class="proj-reel-badge">REEL IV</span>
+          </div>
           <div>
             <div class="proj-title-row">
               <div class="proj-title">AI Voice Assistant</div>
-              <div class="proj-tags"><span class="chip">AI</span><span class="chip">Speech Recognition</span></div>
+              <div class="proj-tags"><span class="chip">AI Engine</span><span class="chip">Acoustic Core</span><span class="chip">Python</span></div>
             </div>
-            <p class="proj-desc">An intelligent voice-driven assistant designed to understand natural language and provide real-time responses.</p>
+            <p class="proj-desc">An intelligent synthetic speech companion designed to decipher complex conversational intents, process commands, and generate contextual responses in real time.</p>
+
+            <!-- Cinematic Visual Poster -->
+            <div class="proj-poster">
+              <div class="poster-header">
+                <span>SYNTHETIC NEURAL COGNITION // ACOUSTIC SPECTRUM</span>
+                <span class="poster-status"><span class="dot"></span>LISTENING</span>
+              </div>
+              <svg class="poster-viz" viewBox="0 0 600 50" fill="none">
+                <circle cx="300" cy="25" r="16" stroke="#5FD0E0" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7" />
+                <circle cx="300" cy="25" r="7" fill="#F2B95C" />
+                <path d="M120,25 Q180,5 240,25 T360,25 T480,25" stroke="rgba(95,208,224,0.4)" stroke-width="1.5" fill="none" />
+                <path d="M60,25 Q120,40 180,25 T300,25 T420,25 T540,25" stroke="rgba(242,185,92,0.3)" stroke-width="1" fill="none" />
+              </svg>
+            </div>
+
             <ul class="proj-points">
               <li>Integrates speech recognition with AI-powered processing to handle queries, tasks, and information seamlessly.</li>
               <li>Built to enhance user interaction by delivering personalized, efficient, hands-free assistance.</li>
@@ -294,12 +447,14 @@
   </div>
 </section>
 
+<div class="scene-divider" aria-hidden="true"></div>
+
 <!-- ================= EDUCATION ================= -->
 <section id="education">
   <div class="wrap">
     <div class="section-head">
-      <div class="reveal"><span class="section-tag">05 · Education</span></div>
-      <h2 class="section-title split">Academic background</h2>
+      <div class="reveal"><span class="section-tag">Act V · The Chronicles // Academic Milestones</span></div>
+      <h2 class="section-title split">Education &amp; foundations</h2>
     </div>
     <div class="timeline" id="timeline">
       <div class="tl-item reveal">
@@ -327,12 +482,14 @@
   </div>
 </section>
 
+<div class="scene-divider" aria-hidden="true"></div>
+
 <!-- ================= CERTIFICATIONS ================= -->
 <section id="certifications">
   <div class="wrap">
     <div class="section-head">
-      <div class="reveal"><span class="section-tag">06 · Certifications</span></div>
-      <h2 class="section-title split">Continuous learning</h2>
+      <div class="reveal"><span class="section-tag">Act VI · Accreditations // Continuous Learning</span></div>
+      <h2 class="section-title split">Industry credentials &amp; masteries</h2>
     </div>
     <div class="cert-grid" data-stagger>
       <div class="cert-card spot reveal"><div class="cert-badge">☁</div><div class="cert-name">AWS Advanced Cloud Technologies</div></div>
@@ -345,13 +502,16 @@
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
+<div class="scene-divider" aria-hidden="true"></div>
+
+<!-- ================= CONTACT & CREDITS ================= -->
 <section id="contact">
   <div class="wrap">
-    <div class="reveal"><span class="section-tag">07 · Contact</span></div>
+    <div class="reveal"><span class="section-tag">Act VII · Roll Credits // The Collaboration</span></div>
     <h2 class="contact-title split">Let's build something <span class="dream">worth dreaming about.</span></h2>
-    <p class="contact-sub reveal">Open to entry-level Software Developer roles and interesting collaborations. Reach out — I reply fast.</p>
+    <p class="contact-sub reveal">Open to entry-level Software Developer roles and ambitious product teams. Transmit a signal — I reply fast.</p>
     <a class="big-mail reveal" data-magnetic href="mailto:souravpandey21042006@gmail.com">souravpandey21042006@gmail.com <span>↗</span></a>
+    
     <div class="contact-links" data-stagger>
       <a class="contact-pill reveal" data-magnetic href="tel:+916207569886">☎ +91 62075 69886</a>
       <a class="contact-pill reveal" data-magnetic href="https://www.linkedin.com/in/souravpandey-47560a346" target="_blank" rel="noopener">in LinkedIn</a>
@@ -359,15 +519,29 @@
       <button class="contact-pill reveal" data-magnetic id="copyEmail" type="button">⧉ Copy email</button>
       <span class="contact-pill static reveal">◎ Ranchi, Jharkhand</span>
     </div>
+
+    <!-- Cinematic End Credits Block -->
+    <div class="credits-block reveal">
+      <div class="credits-head">PRODUCTION CREDITS &amp; ARCHITECTURE</div>
+      <div class="credits-crawl">
+        <div class="credit-row"><span class="credit-role">DIRECTOR &amp; DEVELOPER</span><span class="credit-dots"></span><span class="credit-name">SOURAV PANDEY</span></div>
+        <div class="credit-row"><span class="credit-role">PRIMARY STACK</span><span class="credit-dots"></span><span class="credit-name">C++ · PYTHON · REACT · NODE.JS · POSTGRESQL</span></div>
+        <div class="credit-row"><span class="credit-role">ACADEMIC BASE</span><span class="credit-dots"></span><span class="credit-name">CHANDIGARH UNIVERSITY (BE CSE '28)</span></div>
+        <div class="credit-row"><span class="credit-role">AUDIO SYNTHESIS</span><span class="credit-dots"></span><span class="credit-name">PROCEDURAL WEB AUDIO API (NO ASSETS)</span></div>
+        <div class="credit-row"><span class="credit-role">VISUAL DIRECTION</span><span class="credit-dots"></span><span class="credit-name">2.39:1 ANAMORPHIC CINEMASCOPE SYSTEM</span></div>
+      </div>
+    </div>
   </div>
+
   <div class="marquee marquee-xl" data-marquee="0.9" data-dir="right" aria-hidden="true">
     <div class="marquee-track">
       <span class="marquee-item">Dream big</span><span class="marquee-item">Build bigger</span><span class="marquee-item">Let's talk</span>
     </div>
   </div>
+
   <footer>
     <div class="wrap">
-      <span class="footer-text">© 2026 SOURAV PANDEY</span>
+      <span class="footer-text">© 2026 SOURAV PANDEY · CINEMATIC PRODUCTION</span>
       <span class="footer-text" id="clock">RANCHI · --:-- IST</span>
       <button class="to-top" id="toTop" type="button">Back to top ↑</button>
     </div>
