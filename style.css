@@ -130,7 +130,7 @@ html.has-cursor .cursor-glow { opacity: 1; }
 /* =====================================================
    CINEMATIC CROSSHAIR CURSOR
 ===================================================== */
-.cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; border-radius: 50%; opacity: 0; }
+.cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 120000; border-radius: 50%; opacity: 0; }
 html.has-cursor .cursor-dot, html.has-cursor .cursor-ring { opacity: 1; }
 .cursor-dot {
   width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px;
@@ -160,7 +160,7 @@ html.has-cursor .cursor-dot, html.has-cursor .cursor-ring { opacity: 1; }
   box-shadow: 0 0 24px rgba(242, 185, 92, 0.4);
 }
 .cursor-ring.down { width: 28px; height: 28px; margin: -14px 0 0 -14px; }
-html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor [data-cursor] { cursor: none; }
+html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor [data-cursor], html.has-cursor .modal-overlay, html.has-cursor .modal-box, html.has-cursor .modal-box * { cursor: none; }
 
 /* =====================================================
    CINEMATIC STUDIO OPENING PRELOADER
